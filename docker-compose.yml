@@ -14,6 +14,7 @@ services:
 
     php-fpm:
         build: phpdocker/php-fpm
+        container_name: kanye-west-quotes
         working_dir: /application
         volumes:
             - '.:/application'
