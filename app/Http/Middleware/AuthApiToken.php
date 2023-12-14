@@ -19,7 +19,7 @@ class AuthApiToken
     {
         //Make sure bearer token is set in the header and that it matches the string within the environment file
         if (!$request->header('Authorization') || !Str::contains($request->header('Authorization'), env('API_TOKEN'))) {
-            return response()->json(['Error' => 'Authorisation missing'], 401);
+            return response()->json(['error' => 'Authorisation missing'], 401);
         }
 
         return $next($request);
