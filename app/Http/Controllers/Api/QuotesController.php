@@ -17,7 +17,7 @@ class QuotesController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $response = $this->quotesService->getQuotes();
+            $quotes = $this->quotesService->getQuotes();
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
@@ -25,18 +25,20 @@ class QuotesController extends Controller
             ]);
         }
 
-        return response()->json($response);
+        return response()->json(['quotes' => $quotes]);
     }
 
     public function refresh(Request $request): JsonResponse
     {
         try {
-            Log::info($request);
+            $quotes = $this->quotesService->refreshQuotes($request['quotes']);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
                 500
             ]);
         }
+
+        return response()->json(['quotes' => $quotes]);
     }
 }

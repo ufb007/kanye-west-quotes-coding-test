@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use Exception;
 
 class QuotesService
@@ -40,7 +39,7 @@ class QuotesService
     {
         $newQuotes = [];
 
-        while (count($newQuotes) < 5) {
+        while (count($newQuotes) < $this->limit) {
             $response = Http::get(env('API_URI'));
             $quote = $response->json()['quote'];
 
