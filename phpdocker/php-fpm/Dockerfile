@@ -6,3 +6,5 @@ RUN apt-get update \
         php8.2-http \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+ADD . /applcation
+RUN chown -R www-data:www-data /application
